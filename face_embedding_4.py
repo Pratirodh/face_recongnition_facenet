@@ -5,8 +5,8 @@ from numpy import asarray
 from numpy import savez_compressed
 from keras.models import load_model
 MODEL = load_model('D:/venv/facenet_keras.h5')
-SAVE_EMBEDDING_PATH = 'D:/venv/faces-embeddings.npz'
-DATASET_PATH =	'D:/venv/dataset.npz'
+SAVE_EMBEDDING_PATH = 'D:/venv/info_model/faces-embeddings.npz'
+DATASET_PATH =	'D:/venv/info_model/dataset.npz'
 # get the face embedding for one face
 def get_embedding(face_pixels, model=MODEL):
 	# scale pixel values
@@ -30,19 +30,19 @@ def save_embedding(save_path, dataset_path):
 	model = MODEL
 	print('Loaded Model')
 	# convert each face in the train set to an embedding
-	newTrainX = list()
+	newTrainX = [] 
 	for face_pixels in trainX:
-		embedding = get_embedding( face_pixels,model)
+		embedding = get_embedding(face_pixels, model)
 		newTrainX.append(embedding)
-		newTrainX = asarray(newTrainX)
-		print(newTrainX.shape)
 	# convert each face in the test set to an embedding
+	newTrainX = asarray(newTrainX)
+	print(newTrainX.shape)
 	newTestX = list()
 	for face_pixels in testX:
 		embedding = get_embedding( face_pixels,model)
 		newTestX.append(embedding)
-		newTestX = asarray(newTestX)
-		print(newTestX.shape)
+	newTestX = asarray(newTestX)
+	print(newTestX.shape)
 	# save arrays to one file in compressed format
 	savez_compressed(save_path, newTrainX, trainy, newTestX, testy)
 

@@ -16,12 +16,9 @@ DICT_PATH = './dataset_dect.json'
 
 def train(dataset_path, embedding_path, model_path, train_path, test_path, dict_path):
     # save dataset
-    save_dataset(train_path=train_path, test_path=test_path, save_path=dataset_path, dict_path=dict_path)
-    # save embedding
-    save_embedding(save_path=embedding_path, dataset_path=dataset_path)
-    # load faces
-    data = load(dataset_path)
-    testX_faces = data['arr_2']
+    # save_dataset(train_path=train_path, test_path=test_path, save_path=dataset_path, dict_path=dict_path)
+    # # save embedding
+    # save_embedding(save_path=embedding_path, dataset_path=dataset_path)
     # load face embeddings
     data = load(embedding_path)
     trainX, trainy, testX, testy = data['arr_0'], data['arr_1'], data['arr_2'], data['arr_3']
@@ -33,12 +30,14 @@ def train(dataset_path, embedding_path, model_path, train_path, test_path, dict_
     out_encoder = LabelEncoder()
     out_encoder.fit(trainy)
     trainy = out_encoder.transform(trainy)
-    testy = out_encoder.transform(testy)
+    # testy = out_encoder.transform(testy)
     # fit model
+    # print(trainy)
     model = SVC(kernel='linear', probability=True)
     model.fit(trainX, trainy)
     with open(model_path,'wb') as f:
         pickle.dump(model,f)
+    print('Training completely sucessfully')
     
 if __name__ == "__main__":
     train(DATASET_PATH, EMBEDDING_PATH, MODEL_PATH, TRAIN_PATH, TEST_PATH, DICT_PATH) 

@@ -25,18 +25,21 @@ if __name__ == "__main__":
                     x2, y2 = x + width, y + height
                     cv2.rectangle(frame, (x, y), (x2, y2), (0, 0, 255), 2)
                     t1 = time.time()
-                    predicted_name =  predict('./imageframe.jpg')
-                    cv2.putText(frame, 
-                        predicted_name, 
-                        (x, y), 
-                        font, 0.5, 
-                        (0, 128, 0), 
-                        2, 
-                        cv2.LINE_4
-                    )
-                    text_to_speech(predicted_name)
-                    t2 = time.time()
-                    print(t2 - t1)
+                    try:
+                        predicted_name =  predict('./imageframe.jpg')
+                        cv2.putText(frame, 
+                            predicted_name, 
+                            (x, y), 
+                            font, 0.5, 
+                            (0, 128, 0), 
+                            2, 
+                            cv2.LINE_4
+                        )
+                        text_to_speech(predicted_name)
+                        t2 = time.time()
+                        print(t2 - t1)
+                    except:
+                        pass
             cv2.imshow("Output",frame)
             if cv2.waitKey(20) & 0xFF == ord('q'):
                 break

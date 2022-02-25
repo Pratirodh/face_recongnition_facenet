@@ -72,7 +72,10 @@ def load_dataset(directory, dict_path):
 		if not isdir(path):
 			continue
 		# load all faces in the subdirectory
-		faces = load_faces(path)
+		try:
+			faces = load_faces(path)
+		except:
+			continue
 		# create labels
 		labels = [subdir for _ in range(len(faces))]
 		# summarize progress
@@ -92,7 +95,7 @@ def save_dataset(train_path, test_path, save_path, dict_path):
 	# load test dataset
 	# testX, testy = load_dataset('D:/venv/val/')
 	# testX, testy = load_dataset('D:/venv/test_images/test_images/')
-	testX, testy = load_dataset(test_path)
+	testX, testy = load_dataset(test_path, dict_path)
 	# save arrays to one file in compressed format
 	# savez_compressed('D:/venv/dataset.npz', trainX, trainy, testX, testy)
 	savez_compressed(save_path, trainX, trainy, testX, testy)

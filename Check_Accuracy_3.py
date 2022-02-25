@@ -6,7 +6,7 @@ from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVC
 #import matplotlib.pylploy as plt
 # load dataset
-data = load('D:/venv/faces-embeddings.npz')
+data = load('D:/venv/info_model/faces-embeddings.npz')
 trainX, trainy, testX, testy = data['arr_0'], data['arr_1'], data['arr_2'], data['arr_3']
 print('Dataset: train=%d, test=%d' % (trainX.shape[0], testX.shape[0]))
 # normalize input vectors
@@ -17,7 +17,7 @@ testX = in_encoder.transform(testX)
 out_encoder = LabelEncoder()
 out_encoder.fit(trainy)
 trainy = out_encoder.transform(trainy)
-testy = out_encoder.transform(testy)
+# testy = out_encoder.transform(testy)
 # fit model
 model = SVC(kernel='linear', probability=True)
 model.fit(trainX, trainy)
