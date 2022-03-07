@@ -127,3 +127,19 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+facerecog/*
+info_model/*
+models/*
+test_images/*
+train/*
+training_images/*
+val/*
+
+dataset_dect.json
+dataset.npz
+facenet_keras.h5
+faces-embeddings.npz
+test_images.zip
+training_images.zip
+name.mp3
