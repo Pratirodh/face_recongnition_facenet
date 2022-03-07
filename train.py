@@ -8,10 +8,10 @@ import pickle
 import matplotlib.pyplot as plt
 
 MODEL_PATH = './models/model1.pkl'
-TRAIN_PATH = 'D:/venv/training_images/'
-TEST_PATH = 'D:/venv/test_images/test_images/'
-EMBEDDING_PATH = 'D:/venv/info_model/faces-embeddings.npz'
-DATASET_PATH =	'D:/venv/info_model/dataset.npz'
+TRAIN_PATH = './training_images/'
+TEST_PATH = './test_images/test_images/'
+EMBEDDING_PATH = './info_model/faces-embeddings.npz'
+DATASET_PATH =	'./info_model/dataset.npz'
 DICT_PATH = './dataset_dect.json'
 # model_location = './models/actual_model.pkl'
 
